@@ -62,6 +62,17 @@ app.get("/logs/:id", (req, res) => {
   });
 });
 
+//* Edit Route
+app.get("/logs/:id/edit", (req, res) => {
+  Log.findById(req.params.id, (error, foundLogEdit) => {
+    if (!error) {
+      res.render("captains/Edit", { log: foundLogEdit });
+    } else {
+      res.send({ msg: error.message });
+    }
+  });
+});
+
 //* Delete Route
 app.delete("/logs/:id", (req, res) => {
   Log.findByIdAndRemove(req.params.id, (error, deletedLog) => {
