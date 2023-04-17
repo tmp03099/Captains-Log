@@ -11,7 +11,7 @@ const logSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    shiplsBroken: {
+    shipIsBroken: {
       type: Boolean,
       default: true,
     },

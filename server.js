@@ -23,6 +23,10 @@ app.get("/", (req, res) => {
   res.send("<h1>Captains Log</h1>");
 });
 
+app.get("/logs/new", (req, res) => {
+  res.render("captains/New");
+});
+
 app.listen(port, function () {
   console.log(`Listening on port ${port}`);
   connectToDB();
