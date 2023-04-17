@@ -52,6 +52,13 @@ app.get("/logs", (req, res) => {
   });
 });
 
+//* Show Route
+app.get("/logs/:id", (req, res) => {
+  Log.findById(req.params.id, (error, foundLogId) => {
+    res.render("captains/Show", { log: foundLogId });
+  });
+});
+
 app.listen(port, function () {
   console.log(`Listening on port ${port}`);
   connectToDB();

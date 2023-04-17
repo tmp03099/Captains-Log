@@ -10,9 +10,9 @@ function Index({ logs }) {
       <ul>
         {logs.map((log, i) => {
           return (
-            <li>
+            <li key={log._id}>
               {" "}
-              Title {log.title}
+              Title <a href={`logs/${log._id}`}>{log.title}</a>
               Entry {log.entry}
               {log.shipIsBroken ? "It is broken" : "The ship is good"}
             </li>
