@@ -40,7 +40,15 @@ app.post("/logs", (req, res) => {
   }
 
   Log.create(req.body, (error, createdLog) => {
-    res.send(createdLog);
+    // res.send(createdLog);
+    res.redirect(`/logs/${createdLog._id}`);
+  });
+});
+
+//* Index route
+app.get("/logs", (req, res) => {
+  Log.find({}, (error, allLogs) => {
+    res.render("captains/Index", { logs: allLogs });
   });
 });
 
