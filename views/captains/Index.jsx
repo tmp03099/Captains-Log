@@ -15,6 +15,9 @@ function Index({ logs }) {
               Title <a href={`logs/${log._id}`}>{log.title}</a>
               Entry {log.entry}
               {log.shipIsBroken ? "It is broken" : "The ship is good"}
+              <form method="POST" action={`/logs/${log._id}?_method=DELETE`}>
+                <input type="submit" value="DELETE" />
+              </form>
             </li>
           );
         })}

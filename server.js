@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const connectToDB = require("./config/db");
+const methodOverride = require("method-override");
 
 //import models
 const Log = require("./models/Log");
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 });
 //parses the data fromt the request
 app.use(express.urlencoded({ extended: false }));
+//! override using a query value
+app.use(methodOverride("_method"));
 
 //* Default route
 app.get("/", (req, res) => {
@@ -56,6 +59,13 @@ app.get("/logs", (req, res) => {
 app.get("/logs/:id", (req, res) => {
   Log.findById(req.params.id, (error, foundLogId) => {
     res.render("captains/Show", { log: foundLogId });
+  });
+});
+
+//* Delete Route
+app.delete("/logs/:id", (req, res) => {
+  Log.findByIdAndRemove(req.params.id, (error, deletedLog) => {
+    res.redirect("/logs");
   });
 });
 
