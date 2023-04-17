@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const connectToDB = require("./config/db");
 
+//import models
+const Log = require("./models/Log");
+
 // create app
 const app = express();
 const port = 3000;
@@ -23,8 +26,22 @@ app.get("/", (req, res) => {
   res.send("<h1>Captains Log</h1>");
 });
 
+//* New route
 app.get("/logs/new", (req, res) => {
   res.render("captains/New");
+});
+
+//* Create route
+app.post("/logs", (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+
+  Log.create(req.body, (error, createdLog) => {
+    res.send(createdLog);
+  });
 });
 
 app.listen(port, function () {

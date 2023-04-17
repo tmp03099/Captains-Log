@@ -7,12 +7,9 @@ const db = mongoose.connection;
 module.exports = function () {
   //! connect to mongodbB
   mongoose.set("strictQuery", true);
-  mongoose.connect(process.env.MONGO_URI, {
+  mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  });
-  mongoose.connection.once("open", () => {
-    console.log("Connected to MongoDB!");
   });
 
   //listen for connection
