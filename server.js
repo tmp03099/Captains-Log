@@ -55,13 +55,6 @@ app.get("/logs", (req, res) => {
   });
 });
 
-//* Show Route
-app.get("/logs/:id", (req, res) => {
-  Log.findById(req.params.id, (error, foundLogId) => {
-    res.render("captains/Show", { log: foundLogId });
-  });
-});
-
 //* Edit Route
 app.get("/logs/:id/edit", (req, res) => {
   Log.findById(req.params.id, (error, foundLogEdit) => {
@@ -70,6 +63,32 @@ app.get("/logs/:id/edit", (req, res) => {
     } else {
       res.send({ msg: error.message });
     }
+  });
+});
+
+//* Update Route
+app.put("/logs/:id", (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+
+  Log.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (error, updatedLog) => {
+      // res.send(updatedLog);
+      res.redirect(`/logs/${req.params.id}`);
+    }
+  );
+});
+
+//* Show Route
+app.get("/logs/:id", (req, res) => {
+  Log.findById(req.params.id, (error, foundLogId) => {
+    res.render("captains/Show", { log: foundLogId });
   });
 });
 
