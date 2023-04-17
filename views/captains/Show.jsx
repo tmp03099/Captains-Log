@@ -7,9 +7,10 @@ function Show({ log }) {
     <div>
       <h1>Show Captain's Log</h1>
       <p>
-        The title {log.title} entry {log.entry}
-        {log.shipIsBroken ? "It is broken" : "The ship is good"}
-        created {moment().format("MMMM Do YYYY, h:mm:ss a").toString()}
+        Title: {log.title} <br />
+        Entry: {log.entry} <br />
+        {log.shipIsBroken ? " It is broken " : " It is good "} - created in{" "}
+        {moment().format("MMMM Do YYYY, h:mm:ss a").toString()}
       </p>
     </div>
   );
