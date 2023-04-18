@@ -11,10 +11,10 @@ function Index({ logs }) {
         {logs.map((log, i) => {
           return (
             <li key={log._id}>
-              Title: {log.title} <br />
+              Title: <a href={`logs/${log._id}`}>{log.title}</a> <br />
               Entry: {log.entry} <br />
-              {log.shipIsBroken ? " It is broken " : " It is good "} - created
-              in <a href={`/logs/${log._id}/edit`}>Edit</a>
+              {log.shipIsBroken ? " It is broken " : " It is good "}
+              <a href={`/logs/${log._id}/edit`}>Edit</a>
               <form method="POST" action={`/logs/${log._id}?_method=DELETE`}>
                 <input type="submit" value="DELETE" />
               </form>

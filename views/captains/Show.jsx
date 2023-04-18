@@ -12,6 +12,7 @@ function Show({ log }) {
         {log.shipIsBroken ? " It is broken " : " It is good "} - created in{" "}
         {moment().format("MMMM Do YYYY, h:mm:ss a").toString()}
       </p>
+      <a href="/logs">Back</a>
     </div>
   );
 }
